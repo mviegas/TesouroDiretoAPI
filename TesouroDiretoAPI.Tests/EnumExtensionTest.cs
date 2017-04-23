@@ -48,5 +48,23 @@ namespace TesouroDiretoAPI.Tests
         {
             Assert.True(TitulosDisponiveisEnum.IGPMComJurosSemestrais2017.GetVencimento() == "01/07/2017");
         }
+
+        [Fact]
+        public void GetVencimentoInvalid()
+        {
+            Assert.True(TitulosDisponiveisEnum.IGPMComJurosSemestrais2017.GetVencimento() == "01/07/2017");
+        }
+
+        [Fact]
+        public void GetSigla()
+        {
+            Assert.True(TitulosDisponiveisEnum.IGPMComJurosSemestrais2017.GetSigla() == "NTNC");
+        }
+
+        [Fact]
+        public void GetSiglaInvalid()
+        {
+            Assert.False(TitulosDisponiveisEnum.IPCAComJurosSemestrais2017.GetSigla() == "NTNBPrincipal");
+        }
     }
 }

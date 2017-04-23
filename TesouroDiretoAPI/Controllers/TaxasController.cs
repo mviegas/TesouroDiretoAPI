@@ -23,35 +23,15 @@ namespace TesouroDiretoAPI.Controllers
             _service = new ParseDadosDoTituloService();
         }
 
-        /// <summary>
-        /// // GET api/values
-        /// </summary>
-        /// <returns></returns>
         [HttpGet("")]
-        [ProducesResponseType(typeof(JsonResult), 200)]
-        [ProducesResponseType(typeof(IDictionary<string, string>), 400)]
-        [ProducesResponseType(typeof(void), 500)]
-        public async Task<IActionResult> Get()
-        {
-            var result = await _service.ExecuteAsync();
-
-            if (!result.Any())
-                return NotFound();
-
-            return new JsonResult(result);
-        }
-
-        [HttpGet("params")]
         [ProducesResponseType(typeof(string), 200)]
         [ProducesResponseType(typeof(IDictionary<string, string>), 400)]
         [ProducesResponseType(typeof(void), 500)]
-        public async Task<IActionResult> Get(string tipo, bool? possuiCupom, int? ano)
+        public async Task<IActionResult> Get(string tipo, bool? possuiCupom, int? ano, string sigla)
         {
             try
             {
-                var tipoDeTitulo = EnumExtension.GetEnumValueFromDescription<TipoDeTituloEnum>(tipo);
-
-                var result = await _service.ExecuteAsync(tipoDeTitulo, possuiCupom, ano);
+                var result = await _service.ExecuteAsync(tipo, possuiCupom, ano, sigla);
 
                 if (!result.Any())
                     return NotFound();

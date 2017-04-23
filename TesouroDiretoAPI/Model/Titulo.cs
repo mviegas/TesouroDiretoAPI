@@ -47,6 +47,11 @@ namespace TesouroDiretoAPI
         public string Vencimento { get { return TipoDeTitulo.GetVencimento(); } }
 
         /// <summary>
+        /// Sigla do Tipo do Título
+        /// </summary>
+        public string Sigla { get { return TipoDeTitulo.GetSigla(); } }
+
+        /// <summary>
         /// Indica se o título paga cupoms semestrais
         /// </summary>
         public bool PossuiCupom { get { return TipoDeTitulo.GetDescription().Contains("Juros"); } }

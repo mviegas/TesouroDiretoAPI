@@ -24,11 +24,20 @@ namespace TesouroDiretoAPI.Common
         /// </summary>
         /// <param name="descricao">Descrição do Título</param>
         /// <param name="vencimento">Data de Vencimento</param>
-        public TituloDescriptionAttribute(string descricao, string vencimento = "") : base(descricao)
+        public TituloDescriptionAttribute(string descricao, string vencimento, string sigla) : base(descricao)
         {
             Vencimento = vencimento;
+            Sigla = sigla;
         }
 
+        /// <summary>
+        /// Data de Vencimento do Título
+        /// </summary>
         public string Vencimento { get; private set; }
+
+        /// <summary>
+        /// Sigla do Título
+        /// </summary>
+        public string Sigla { get; private set; }
     }
 }

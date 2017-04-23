@@ -74,5 +74,21 @@ namespace TesouroDiretoAPI.Common
             else
                 return owner.ToString();
         }
+
+        /// <summary>
+        /// Retonra a Sigla de um Enumerado decorado com o Atributo TituloDescription
+        /// </summary>
+        /// <param name="owner"></param>
+        /// <returns></returns>
+        public static String GetSigla(this Enum owner)
+        {
+            FieldInfo fieldInfo = owner.GetType().GetField(owner.ToString());
+            var attribute = fieldInfo.GetCustomAttribute<TituloDescriptionAttribute>();
+
+            if (attribute != null)
+                return attribute.Sigla;
+            else
+                return owner.ToString();
+        }
     }
 }

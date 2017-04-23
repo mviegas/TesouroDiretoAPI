@@ -17,7 +17,7 @@ namespace TesouroDiretoAPI
         /// Executa o Parse retornando os Títulos disponíveis no Site do Tesouro
         /// </summary>
         /// <returns></returns>
-        public async Task<IEnumerable<Titulo>> ExecuteAsync(TipoDeTituloEnum? tipoDoTitulo = null, bool? possuiCupom = null, int? ano = null)
+        public async Task<IEnumerable<Titulo>> ExecuteAsync(string tipoDoTitulo = null, bool? possuiCupom = null, int? ano = null, string sigla = null)
         {
             var client = new HttpClient();
             string page = await client.GetStringAsync("http://www3.tesouro.gov.br/tesouro_direto/consulta_titulos_novosite/consultatitulos.asp");
@@ -51,9 +51,13 @@ namespace TesouroDiretoAPI
 
             titulos = titulos
                 .Where(t => 
-                    (tipoDoTitulo == null ? true : t.Descricao.Contains(tipoDoTitulo.GetDescription())) &&
+                    (tipoDoTitulo.IsNullOrEmpty() ? true : 
+                        t.Descricao
+                        .ToUpper()
+                        .Contains(EnumExtension.GetEnumValueFromDescription<TipoDeTituloEnum>(tipoDoTitulo).GetDescription().ToUpper())) &&
                     (!possuiCupom.HasValue ? true : t.PossuiCupom == possuiCupom) &&
-                    (!ano.HasValue ? true : t.AnoVencimento == ano))
+                    (!ano.HasValue ? true : t.AnoVencimento == ano) &&
+                    (sigla.IsNullOrEmpty() ? true : t.Sigla == sigla))
                 .ToList();
 
             return titulos;

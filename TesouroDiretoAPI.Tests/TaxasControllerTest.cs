@@ -14,7 +14,7 @@ namespace TesouroDiretoAPI.Tests
         [Fact]
         public async System.Threading.Tasks.Task GetPrefixados()
         {
-            var titulos = await new TaxasController().Get("Prefixado", null, null);
+            var titulos = await new TaxasController().Get("Prefixado", null, null, null);
 
             Assert.IsType<JsonResult>(titulos);
             Assert.True(((titulos as JsonResult).Value as IList<Titulo>).Count == 9);
@@ -23,7 +23,7 @@ namespace TesouroDiretoAPI.Tests
         [Fact]
         public async System.Threading.Tasks.Task GetPrefixadosComCupom()
         {
-            var titulos = await new TaxasController().Get("Prefixado", true, null);
+            var titulos = await new TaxasController().Get("Prefixado", true, null, null);
 
             Assert.IsType<JsonResult>(titulos);
             Assert.True(((titulos as JsonResult).Value as IList<Titulo>).Count == 4);
@@ -32,7 +32,7 @@ namespace TesouroDiretoAPI.Tests
         [Fact]
         public async System.Threading.Tasks.Task GetPrefixados2021()
         {
-            var titulos = await new TaxasController().Get("Prefixado", null, 2021);
+            var titulos = await new TaxasController().Get("Prefixado", null, 2021, null);
 
             Assert.IsType<JsonResult>(titulos);
             Assert.True(((titulos as JsonResult).Value as IList<Titulo>).Count == 2);
@@ -41,7 +41,7 @@ namespace TesouroDiretoAPI.Tests
         [Fact]
         public async System.Threading.Tasks.Task GetIPCA()
         {
-            var titulos = await new TaxasController().Get("IPCA", null, null);
+            var titulos = await new TaxasController().Get("IPCA", null, null, null);
 
             Assert.IsType<JsonResult>(titulos);
             Assert.True(((titulos as JsonResult).Value as IList<Titulo>).Count == 11);
@@ -50,7 +50,7 @@ namespace TesouroDiretoAPI.Tests
         [Fact]
         public async System.Threading.Tasks.Task GetIGPM()
         {
-            var titulos = await new TaxasController().Get("IGPM", null, null);
+            var titulos = await new TaxasController().Get("IGPM", null, null, null);
 
             Assert.IsType<JsonResult>(titulos);
             Assert.True(((titulos as JsonResult).Value as IList<Titulo>).Count == 3);
@@ -59,7 +59,7 @@ namespace TesouroDiretoAPI.Tests
         [Fact]
         public async System.Threading.Tasks.Task GetSelic()
         {
-            var titulos = await new TaxasController().Get("Selic", null, null);
+            var titulos = await new TaxasController().Get("Selic", null, null, null);
 
             Assert.IsType<JsonResult>(titulos);
             Assert.True(((titulos as JsonResult).Value as IList<Titulo>).Count == 2);
@@ -68,7 +68,7 @@ namespace TesouroDiretoAPI.Tests
         [Fact]
         public async System.Threading.Tasks.Task GetTodosOsTitulos()
         {
-            var todosOsTitulos = await new TaxasController().Get();
+            var todosOsTitulos = await new TaxasController().Get(null, null, null, null);
 
             Assert.IsType<JsonResult>(todosOsTitulos);
         }

@@ -68,7 +68,7 @@
         /// <summary>
         /// Título atrelado ao IPCA com Vencimento em 2035
         /// </summary>
-        [TituloDescriptionAttribute("Tesouro IPCA+ 2035", "15/05/2035", "NTNB")]
+        [TituloDescriptionAttribute("Tesouro IPCA+ 2035", "15/05/2035", "NTNBPrincipal")]
         IPCA2035,
 
         /// <summary>
@@ -80,7 +80,7 @@
         /// <summary>
         /// Título atrelado ao IPCA com Vencimento em 2045
         /// </summary>
-        [TituloDescriptionAttribute("Tesouro IPCA+ 2045", "15/05/2045", "NTNB")]
+        [TituloDescriptionAttribute("Tesouro IPCA+ 2045", "15/05/2045", "NTNBPrincipal")]
         IPCA2045,
 
         /// <summary>

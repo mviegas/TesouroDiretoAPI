@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TesouroBot.API</name>
+    </assembly>
+    <members>
+        <member name="M:tesourobot.Controllers.ValuesController.Get(System.String)">
+            <summary>
+            Busca os títulos disponíveis para compra/venda
+            </summary>
+            <param name="nome">Filtro por nome do título, ou parte dele</param>
+            <returns>Listagem dos títulos disponíveis</returns>
+        </member>
+    </members>
+</doc>

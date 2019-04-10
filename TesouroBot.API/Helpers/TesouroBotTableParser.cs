@@ -9,7 +9,7 @@ namespace TesouroBot.API.Helpers
 {
     public class TesouroBotTableParser
     {
-        public static async Task<JsonResult> FetchAsync(string name)
+        public static async Task<IEnumerable<Titulo>> FetchAsync(string name = "")
         {
             var web = new HtmlAgilityPack.HtmlWeb();
             var doc = await web.LoadFromWebAsync("http://www.tesouro.fazenda.gov.br/tesouro-direto-precos-e-taxas-dos-titulos");
@@ -50,16 +50,10 @@ namespace TesouroBot.API.Helpers
                 }
             }
 
-            var settings = new JsonSerializerSettings()
-            {
-                Formatting = Formatting.Indented,
-                NullValueHandling = NullValueHandling.Ignore
-            };
-        
-            return new JsonResult(bonds.Where(t => string.IsNullOrEmpty(name) ? true : t.Nome.ToUpperInvariant().Contains(name.ToUpperInvariant())), settings);
+            return bonds.Where(t => string.IsNullOrEmpty(name) ? true : t.Nome.ToUpperInvariant().Contains(name.ToUpperInvariant())).ToList();
         }
 
-        private class Titulo
+        public class Titulo
         {
             public Titulo(string nome, string vencimento, string taxa, string valorMinimoDeCompra, string precoUnitario, TipoDeTitulo tipoDeTitulo)
             {
@@ -72,6 +66,7 @@ namespace TesouroBot.API.Helpers
             }
 
             public string Nome { get; set; }
+            public string NomeNormalizado => Nome.ToLowerInvariant().Replace(" ", string.Empty).Replace("+", string.Empty);
             public string Vencimento { get; set; }
             public string Taxa { get; set; }
             public string ValorMinimoDeCompra { get; set; }
@@ -81,7 +76,7 @@ namespace TesouroBot.API.Helpers
             public TipoDeTitulo TipoDeTitulo { get; set; }
         }
         
-        private enum TipoDeTitulo
+        public enum TipoDeTitulo
         {
             Compra,
             Venda

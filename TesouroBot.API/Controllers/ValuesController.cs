@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using System.Threading.Tasks;
 using TesouroBot.API.Helpers;
 
@@ -17,9 +19,15 @@ namespace tesourobot.Controllers
         [HttpGet]
         public async Task<JsonResult> Get(string nome)
         {
-            var jsonResult = await TesouroBotTableParser.FetchAsync(nome);
+            var bonds = await TesouroBotTableParser.FetchAsync(nome);
 
-            return jsonResult;
+            var settings = new JsonSerializerSettings()
+            {
+                Formatting = Formatting.Indented,
+                NullValueHandling = NullValueHandling.Ignore
+            };
+
+            return new JsonResult(bonds, settings);
         }
     }
 }
